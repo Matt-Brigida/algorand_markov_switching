@@ -109,8 +109,10 @@ res_areturns = mod_areturns.fit()
 
 res_areturns.summary()
 
-res_areturns.smoothed_marginal_probabilities[0].plot(
-    title="Probability of low-variance regime: Crypto 3 Factor Model", figsize=(12, 3)
+plt.clf()
+
+res_areturns.smoothed_marginal_probabilities[1].plot(
+    title="Probability of high-variance regime: Crypto 3 Factor Model", figsize=(12, 3)
 )
 
 # plt.show()
@@ -182,8 +184,8 @@ res_areturns.summary()
 
 plt.clf()
 
-res_areturns.smoothed_marginal_probabilities[0].plot(
-    title="Probability of low-variance regime: Crypto Market Model", figsize=(12, 3)
+res_areturns.smoothed_marginal_probabilities[1].plot(
+    title="Probability of high-variance regime: Crypto Market Model", figsize=(12, 3)
 )
 
 # plt.show()
