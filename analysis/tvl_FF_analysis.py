@@ -117,6 +117,7 @@ res_areturns.smoothed_marginal_probabilities[1].plot(
 
 # plt.show()
 plt.savefig("two_regimes_3_factor.pdf")
+# plt.savefig("two_regimes_3_factor.png")
 
 #                         Markov Switching Model Results                        
 # ==============================================================================
@@ -190,6 +191,8 @@ res_areturns.smoothed_marginal_probabilities[1].plot(
 
 # plt.show()
 plt.savefig("two_regimes_market_model.pdf")
+plt.savefig("two_regimes_market_model.jpeg")
+plt.savefig("two_regimes_market_model.png")
 
 #                         Markov Switching Model Results                        
 # ==============================================================================

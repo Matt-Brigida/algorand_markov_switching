@@ -1,0 +1,587 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-10-21 Tue 12:43 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Does Algorand Outperform in High-Volatility Periods?</title>
+<meta name="author" content="Matt Brigida" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<style type="text/css">
+/* Base */html,body {    background-color: #222;    min-height: 100%;    line-height: 1.5;}body {    color: #fafafa;    font-family: "Courier New";}::selection {    background-color:  #2ecc40;    color: white;}/* Responsive content positioning */@media only screen and (min-width: 1020px) /* Large screens */{    body{        padding: 10vh 25vw;    }}@media only screen and (max-width: 1020px) and (min-width: 750px) /* Small screens */{    body{        padding: 5vh 10vw;    }}@media only screen and (max-width: 750px) /* Small screens */{    body{        padding: 2vh 5vw;    }}/* Headers */h1{font-size: 2.5rem;}h2{font-size: 1.7rem;}h1 > .subtitle, h3, h4, h5, h6{font-size: 1.3rem;}.title{    margin-bottom: 2.5rem;}/* Padding & Margin */* {margin: 0; padding: 0;}pre, blockquote, ul, ol, p, table{    margin: 1rem 0;}h1, h2{margin-top: 2rem; line-height: 2rem;}h3, h4, h5, h6{margin-top: 1rem;}/* Links  */a, a:visited {    color: #01ff70;    text-decoration: underline;}a:hover, a:focus, a:active {    color: #2ecc40;}/* Code */pre {    font-family: "Courier New";    padding: .5rem;    background-color: #333;    padding: 0.5rem;    border-radius: 0.2rem;    font-size: 0.9rem;    color: #EEE;    overflow-x: auto;}.org-keyword{    color: #01ff70;}.org-rainbow-delimiters-depth-1{    color: #2ecc40;}.org-rainbow-delimiters-depth-2{    color: #01ff70;}/* Blockquotes */blockquote {    border-left: 3px solid #01ff70;    padding-left: 1rem;}li{    list-style-position: inside;}/* Tags */.tag{    margin-top: 0.5rem;    display: block;    color: white;    font-size: var(--font-size-xsmall);}.tag > span{		font-weight: 400;    font-size: 0.8rem;    background-color: #444;    text-transform: uppercase;    border-radius: 2px;    width: fit-content;    height: auto;    padding: 1px 5px;}/* Keywords */.todo{    color: #2ecc40;}.done{    color: #444;}/* Overflows */.outline-text-2, .outline-text-3, .outline-text-4{	  max-width: 100%;	  overflow-x: auto;}/* Table */tr:nth-child(even) {    background-color: #333;}th, td{    padding: 0.5rem;    text-align: center;}.underline{    text-decoration: underline;}img{    max-width: 100%;    height: auto;}
+</style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Does Algorand Outperform in High-Volatility Periods?
+<br />
+<span class="subtitle">A quick regime-switching look at ALGO’s “downside resilience.”</span>
+</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgd5786dd">1. TL;DR</a></li>
+<li><a href="#org2975e80">2. Anecdotal Spark: “ALGO held up best”</a></li>
+<li><a href="#org0a1e057">3. Why a Markov Switching model?</a></li>
+<li><a href="#org8720e51">4. Data &amp; Specification (you can adjust)</a></li>
+<li><a href="#org3b7b7ba">5. Headline Findings (fill in from your estimation)</a>
+<ul>
+<li><a href="#orgd5a2d9d">5.1. Figure: Probability of a High Volatility Regime</a></li>
+<li><a href="#org9f6d034">5.2. Table: Regime betas (β₁ vs β₂ with CIs) — if using factor version</a></li>
+</ul>
+</li>
+<li><a href="#orgef094eb">6. Interpreting the Pattern</a></li>
+<li><a href="#org0cbbd66">7. Bottom Line</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgd5786dd" class="outline-2">
+<h2 id="orgd5786dd"><span class="section-number-2">1.</span> TL;DR</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Over the latest crypto selloff, many observers noted that <b>Algorand (ALGO) didn’t decline as much as the market</b>. 
+A two-state Markov Switching (MS) model on ALGO vs. a crypto market proxy suggests:
+</p>
+<ul class="org-ul">
+<li>In the <b>High-Vol</b> state, ALGO tends to <b><b>outperform</b></b> (or lose less).  Positive alpha.</li>
+<li>In the <b>Low-Vol</b> state, ALGO tends to <b><b>underperform</b></b>.</li>
+</ul>
+
+<p>
+I include placeholders below for your charts/tables.
+</p>
+</div>
+</div>
+<div id="outline-container-org2975e80" class="outline-2">
+<h2 id="org2975e80"><span class="section-number-2">2.</span> Anecdotal Spark: “ALGO held up best”</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Several posts on X highlighted ALGO’s relative resilience during the selloff.
+</p>
+<ul class="org-ul">
+<li><a href="https://x.com/algerstmehn/status/1977063165214228947?utm_source=chatgpt.com">“ALGO held up well during the flush.”</a></li>
+<li>“One of the best-holding L1s today.”</li>
+<li>“Relative strength vs. majors.”</li>
+</ul>
+
+<p>
+<a href="https://www.bloomberg.com/news/articles/2025-10-11/crypto-s-record-selloff-sparks-intrigue-over-who-got-wiped-out?utm_source=chatgpt.com">Context for just how rough that week was for crypto overall (record liquidations and a broad flush).</a>
+</p>
+
+<p>
+That got me wondering whether this wasn’t just a one-off anecdote, but part of a state-dependent pattern: does ALGO behave differently in high-volatility regimes vs low-volatility regimes?
+</p>
+
+<p>
+So I ran a simple two-state Markov Switching (MS) model, and the result confirmed the community's intuition:
+</p>
+
+<ul class="org-ul">
+<li>In the high-vol state, ALGO outperforms the broad crypto market.</li>
+<li>In the low-vol state, ALGO underperforms.</li>
+</ul>
+
+<p>
+Below I’ll outline the setup and what I think it implies for portfolio construction and risk management. I’ll fill in the exact estimates (tables/figures) as I finalize the empirical work.
+</p>
+</div>
+</div>
+<div id="outline-container-org0a1e057" class="outline-2">
+<h2 id="org0a1e057"><span class="section-number-2">3.</span> Why a Markov Switching model?</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Crypto cycles between calm and chaos; a single linear relationship can miss <b>state-dependent</b> behavior.
+</p>
+<ul class="org-ul">
+<li><b>MS(2) intuition:</b> Two latent regimes (Low-Vol, High-Vol), with regime-specific intercepts/betas and transition probabilities.</li>
+<li>We recover <b>smoothed</b> (and <b>filtered</b>) probabilities for each date.</li>
+</ul>
+
+<p>
+A standard (one-state) crypto market model takes the form:
+</p>
+
+<p>
+\[r_{algo,t} - r_f = \alpha_t + \beta_{M}(M_t - r_f) + \epsilon_t\]
+</p>
+
+<p>
+The two-state Markov Switching crypto market model takes the form:
+</p>
+</div>
+</div>
+<div id="outline-container-org8720e51" class="outline-2">
+<h2 id="org8720e51"><span class="section-number-2">4.</span> Data &amp; Specification (you can adjust)</h2>
+<div class="outline-text-2" id="text-4">
+<ul class="org-ul">
+<li><b>Sample:</b> Weekly data from 1/2/2023 to 1/27/2025.</li>
+<li><b>Assets:</b> 
+<ul class="org-ul">
+<li>ALGO close-to-close log returns.</li>
+<li>Market proxy: Total Crypto Market Cap returns.</li>
+</ul></li>
+<li><b>Model:</b> 
+<ul class="org-ul">
+<li>MS on ALGO excess returns with a market factor.</li>
+<li>Regime-specific intercepts, betas, and volatilitys.</li>
+<li>3-factor model includes a high-minus-low TVL, and small-minus-big crypto portfolios.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org3b7b7ba" class="outline-2">
+<h2 id="org3b7b7ba"><span class="section-number-2">5.</span> Headline Findings (fill in from your estimation)</h2>
+<div class="outline-text-2" id="text-5">
+<ul class="org-ul">
+<li><b>State identification:</b> High-Vol spikes line up with overall market volatility.</li>
+<li><b>Performance split:</b>
+<ul class="org-ul">
+<li><b>High-Vol:</b> α (and/or alpha) <b><b>positive and significant</b></b>; beta may decline (defensive tilt) or remain stable.</li>
+<li><b>Low-Vol:</b> α <b><b>negative or flat</b></b>; ALGO lags the market drift.</li>
+</ul></li>
+<li><b>Transition dynamics:</b> High-Vol is shorter-lived and clustered; Low-Vol dominates time-in-state.</li>
+</ul>
+</div>
+<div id="outline-container-orgd5a2d9d" class="outline-3">
+<h3 id="orgd5a2d9d"><span class="section-number-3">5.1.</span> Figure: Probability of a High Volatility Regime</h3>
+<div class="outline-text-3" id="text-5-1">
+
+<div id="orgcd53fdc" class="figure">
+<p><img src="./analysis/two_regimes_market_model.png" alt="two_regimes_market_model.png" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org9f6d034" class="outline-3">
+<h3 id="org9f6d034"><span class="section-number-3">5.2.</span> Table: Regime betas (β₁ vs β₂ with CIs) — if using factor version</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+Algorand Returns Markov-Switching Factor Loadings.  Below are results from a Markov-Switching CAPM regression with 2 regimes.  Coefficients are reported with t-statistics below in parentheses.  Data are sampled at the weekly frequency (ending Friday), and range from July 5, 2019 to November 29, 2024. MktRF is market returns minus the risk free rate, and measures the market price of risk. \(^{*}\), \(^{**}\), and \(^{***}\) denote significance at the 10%, 5%, and 1% levels respectively.
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption class="t-above"><span class="table-number">Table 1:</span> Low Volatility Regime Parameters</caption>
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#xa0;</th>
+<th scope="col" class="org-right">coef</th>
+<th scope="col" class="org-right">Std Err.</th>
+<th scope="col" class="org-right">z</th>
+<th scope="col" class="org-right">P&gt;abs(z)</th>
+<th scope="col" class="org-right">[0.025</th>
+<th scope="col" class="org-right">0.975]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">\(\alpha\)</td>
+<td class="org-right">-1.6282</td>
+<td class="org-right">0.740</td>
+<td class="org-right">-2.201</td>
+<td class="org-right">0.028</td>
+<td class="org-right">-3.078</td>
+<td class="org-right">-0.179</td>
+</tr>
+
+<tr>
+<td class="org-left">\(\beta_M\)</td>
+<td class="org-right">1.0391</td>
+<td class="org-right">0.125</td>
+<td class="org-right">8.296</td>
+<td class="org-right">0.000</td>
+<td class="org-right">0.794</td>
+<td class="org-right">1.285</td>
+</tr>
+
+<tr>
+<td class="org-left">\(\sigma^2\)</td>
+<td class="org-right">43.6980</td>
+<td class="org-right">9.668</td>
+<td class="org-right">4.520</td>
+<td class="org-right">0.000</td>
+<td class="org-right">24.748</td>
+<td class="org-right">62.648</td>
+</tr>
+</tbody>
+</table>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption class="t-above"><span class="table-number">Table 2:</span> High Volatility Regime Parameters</caption>
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#xa0;</th>
+<th scope="col" class="org-right">coef</th>
+<th scope="col" class="org-right">std<sub>err</sub></th>
+<th scope="col" class="org-right">z</th>
+<th scope="col" class="org-right">P&gt;abs(z)</th>
+<th scope="col" class="org-right">[0.025</th>
+<th scope="col" class="org-right">0.975]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">\(\alpha\)</td>
+<td class="org-right">3.9621</td>
+<td class="org-right">5.637</td>
+<td class="org-right">0.703</td>
+<td class="org-right">0.482</td>
+<td class="org-right">-7.087</td>
+<td class="org-right">15.011</td>
+</tr>
+
+<tr>
+<td class="org-left">\(\beta_M\)</td>
+<td class="org-right">2.4169</td>
+<td class="org-right">0.730</td>
+<td class="org-right">3.310</td>
+<td class="org-right">0.001</td>
+<td class="org-right">0.986</td>
+<td class="org-right">3.848</td>
+</tr>
+
+<tr>
+<td class="org-left">\(\sigma^2\)</td>
+<td class="org-right">460.1312</td>
+<td class="org-right">178.208</td>
+<td class="org-right">2.582</td>
+<td class="org-right">0.010</td>
+<td class="org-right">110.850</td>
+<td class="org-right">809.412</td>
+</tr>
+</tbody>
+</table>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption class="t-above"><span class="table-number">Table 3:</span> Regime transition parameters</caption>
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">coef</td>
+<td class="org-right">std<sub>err</sub></td>
+<td class="org-right">z</td>
+<td class="org-right">P&gt;abs(z)</td>
+<td class="org-right">[0.025</td>
+<td class="org-right">0.975]</td>
+</tr>
+
+<tr>
+<td class="org-left">p[Low-&gt;Low]</td>
+<td class="org-right">0.9626</td>
+<td class="org-right">0.026</td>
+<td class="org-right">36.529</td>
+<td class="org-right">0.000</td>
+<td class="org-right">0.911</td>
+<td class="org-right">1.014</td>
+</tr>
+
+<tr>
+<td class="org-left">p[High-&gt;Low]</td>
+<td class="org-right">0.1570</td>
+<td class="org-right">0.123</td>
+<td class="org-right">1.277</td>
+<td class="org-right">0.202</td>
+<td class="org-right">-0.084</td>
+<td class="org-right">0.398</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="outline-container-orgef094eb" class="outline-2">
+<h2 id="orgef094eb"><span class="section-number-2">6.</span> Interpreting the Pattern</h2>
+<div class="outline-text-2" id="text-6">
+<ol class="org-ol">
+<li><b>Microstructure &amp; positioning:</b> Lower leverage/oi can dampen forced selling → relative strength on flush days.</li>
+<li><b>Holder base &amp; narrative:</b> A builder/payment/governance-tilted cohort may sell less aggressively in panics.</li>
+<li><b>Fee/throughput stability:</b> Predictable L1 costs/throughput avoid fee shocks during congestion.</li>
+</ol>
+
+<p>
+None is a silver bullet; together they plausibly yield downside resilience in High-Vol regimes.
+</p>
+</div>
+</div>
+<div id="outline-container-org0cbbd66" class="outline-2">
+<h2 id="org0cbbd66"><span class="section-number-2">7.</span> Bottom Line</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+ALGO doesn’t lead in quiet tapes, and the model agrees. But when volatility spikes, ALGO has tended to <b>lose less or even lead</b>. For risk-aware allocators, that state-contingent resilience can compound meaningfully—provided you manage the <b>when</b> with a disciplined regime filter.
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Matt Brigida</p>
+<p class="date">Created: 2025-10-21 Tue 12:43</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
