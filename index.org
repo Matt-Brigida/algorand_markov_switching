@@ -3,7 +3,7 @@
 #+subtitle: A quick regime-switching look at ALGO’s “downside resilience.”
 #+author: Matt Brigida
 #+date: 
-#+options: toc:2 num:t
+#+options: toc:nil num:t
 #+startup: content
 
 #+begin_comment
@@ -48,18 +48,28 @@ $$r_{algo,t} - r_f = \alpha_t + \beta_{M}(M_t - r_f) + \epsilon_t$$
 
 The two-state Markov Switching crypto market model takes the form:
 
+$$r_{i,t} - r_{f,t} = 
+\begin{cases}
+\alpha_1 + \beta_1(r_{m,t} - r_{f,t}) + \epsilon_{1,t}, & \text{if } s_t = 1 \\
+\alpha_2 + \beta_2(r_{m,t} - r_{f,t}) + \epsilon_{2,t}, & \text{if } s_t = 2
+\end{cases}$$
 
+where $\epsilon_{j,t} \sim \mathcal{N}(0, \sigma^2_j)\ for \ j \in \{1, 2\}$.
 
+and $P(S_t=s_t \mid S_{t-1}=s_{t-1}) = \begin{bmatrix}
+p_{00} & p_{10} \\
+1-p_{00} & 1-p_{10}
+\end{bmatrix}$ 
 
-* Data & Specification (you can adjust)
+* Data
 - *Sample:* Weekly data from 1/2/2023 to 1/27/2025.
 - *Assets:* 
   - ALGO close-to-close log returns.
   - Market proxy: Total Crypto Market Cap returns.
 - *Model:* 
   - MS on ALGO excess returns with a market factor.
-  - Regime-specific intercepts, betas, and volatilitys.
-  - 3-factor model includes a high-minus-low TVL, and small-minus-big crypto portfolios.
+  - Regime-specific intercepts, betas, and volatility.
+  - Additional 3-factor model includes a high-minus-low TVL, and small-minus-big crypto portfolios.
 
 * Headline Findings (fill in from your estimation)
 - *State identification:* High-Vol spikes line up with overall market volatility.
@@ -75,7 +85,9 @@ The two-state Markov Switching crypto market model takes the form:
 
 ** Table: Regime betas (β₁ vs β₂ with CIs) — if using factor version
 
-Algorand Returns Markov-Switching Factor Loadings.  Below are results from a Markov-Switching CAPM regression with 2 regimes.  Coefficients are reported with t-statistics below in parentheses.  Data are sampled at the weekly frequency (ending Friday), and range from July 5, 2019 to November 29, 2024. MktRF is market returns minus the risk free rate, and measures the market price of risk. $^{*}$, $^{**}$, and $^{***}$ denote significance at the 10%, 5%, and 1% levels respectively.
+Below are results from a Markov-Switching CAPM regression with 2 regimes.  $^{*}$, $^{**}$, and $^{***}$ denote significance at the 10%, 5%, and 1% levels respectively.
+
+Table 1 shows coefficients from the low volatility regime.
 
 #+caption: Low Volatility Regime Parameters
 |            |    coef | Std Err. |      z | P>abs(z) | [0.025 | 0.975] |

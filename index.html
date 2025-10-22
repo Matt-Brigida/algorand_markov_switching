@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-21 Tue 12:43 -->
+<!-- 2025-10-21 Tue 22:50 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Does Algorand Outperform in High-Volatility Periods?</title>
@@ -235,27 +235,8 @@
 <br />
 <span class="subtitle">A quick regime-switching look at ALGO’s “downside resilience.”</span>
 </h1>
-<div id="table-of-contents" role="doc-toc">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents" role="doc-toc">
-<ul>
-<li><a href="#orgd5786dd">1. TL;DR</a></li>
-<li><a href="#org2975e80">2. Anecdotal Spark: “ALGO held up best”</a></li>
-<li><a href="#org0a1e057">3. Why a Markov Switching model?</a></li>
-<li><a href="#org8720e51">4. Data &amp; Specification (you can adjust)</a></li>
-<li><a href="#org3b7b7ba">5. Headline Findings (fill in from your estimation)</a>
-<ul>
-<li><a href="#orgd5a2d9d">5.1. Figure: Probability of a High Volatility Regime</a></li>
-<li><a href="#org9f6d034">5.2. Table: Regime betas (β₁ vs β₂ with CIs) — if using factor version</a></li>
-</ul>
-</li>
-<li><a href="#orgef094eb">6. Interpreting the Pattern</a></li>
-<li><a href="#org0cbbd66">7. Bottom Line</a></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-orgd5786dd" class="outline-2">
-<h2 id="orgd5786dd"><span class="section-number-2">1.</span> TL;DR</h2>
+<div id="outline-container-org1b31279" class="outline-2">
+<h2 id="org1b31279"><span class="section-number-2">1.</span> TL;DR</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Over the latest crypto selloff, many observers noted that <b>Algorand (ALGO) didn’t decline as much as the market</b>. 
@@ -271,8 +252,8 @@ I include placeholders below for your charts/tables.
 </p>
 </div>
 </div>
-<div id="outline-container-org2975e80" class="outline-2">
-<h2 id="org2975e80"><span class="section-number-2">2.</span> Anecdotal Spark: “ALGO held up best”</h2>
+<div id="outline-container-org6cc250c" class="outline-2">
+<h2 id="org6cc250c"><span class="section-number-2">2.</span> Anecdotal Spark: “ALGO held up best”</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Several posts on X highlighted ALGO’s relative resilience during the selloff.
@@ -305,8 +286,8 @@ Below I’ll outline the setup and what I think it implies for portfolio constru
 </p>
 </div>
 </div>
-<div id="outline-container-org0a1e057" class="outline-2">
-<h2 id="org0a1e057"><span class="section-number-2">3.</span> Why a Markov Switching model?</h2>
+<div id="outline-container-org860e54f" class="outline-2">
+<h2 id="org860e54f"><span class="section-number-2">3.</span> Why a Markov Switching model?</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Crypto cycles between calm and chaos; a single linear relationship can miss <b>state-dependent</b> behavior.
@@ -327,10 +308,29 @@ A standard (one-state) crypto market model takes the form:
 <p>
 The two-state Markov Switching crypto market model takes the form:
 </p>
+
+<p>
+\[r_{i,t} - r_{f,t} = 
+\begin{cases}
+\alpha_1 + \beta_1(r_{m,t} - r_{f,t}) + \epsilon_{1,t}, & \text{if } s_t = 1 \\
+\alpha_2 + \beta_2(r_{m,t} - r_{f,t}) + \epsilon_{2,t}, & \text{if } s_t = 2
+\end{cases}\]
+</p>
+
+<p>
+where \(\epsilon_{j,t} \sim \mathcal{N}(0, \sigma^2_j)\ for \ j \in \{1, 2\}\).
+</p>
+
+<p>
+and \(P(S_t=s_t \mid S_{t-1}=s_{t-1}) = \begin{bmatrix}
+p_{00} & p_{10} \\
+1-p_{00} & 1-p_{10}
+\end{bmatrix}\) 
+</p>
 </div>
 </div>
-<div id="outline-container-org8720e51" class="outline-2">
-<h2 id="org8720e51"><span class="section-number-2">4.</span> Data &amp; Specification (you can adjust)</h2>
+<div id="outline-container-org70e9f95" class="outline-2">
+<h2 id="org70e9f95"><span class="section-number-2">4.</span> Data</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li><b>Sample:</b> Weekly data from 1/2/2023 to 1/27/2025.</li>
@@ -342,14 +342,14 @@ The two-state Markov Switching crypto market model takes the form:
 <li><b>Model:</b> 
 <ul class="org-ul">
 <li>MS on ALGO excess returns with a market factor.</li>
-<li>Regime-specific intercepts, betas, and volatilitys.</li>
-<li>3-factor model includes a high-minus-low TVL, and small-minus-big crypto portfolios.</li>
+<li>Regime-specific intercepts, betas, and volatility.</li>
+<li>Additional 3-factor model includes a high-minus-low TVL, and small-minus-big crypto portfolios.</li>
 </ul></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org3b7b7ba" class="outline-2">
-<h2 id="org3b7b7ba"><span class="section-number-2">5.</span> Headline Findings (fill in from your estimation)</h2>
+<div id="outline-container-org6687290" class="outline-2">
+<h2 id="org6687290"><span class="section-number-2">5.</span> Headline Findings (fill in from your estimation)</h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li><b>State identification:</b> High-Vol spikes line up with overall market volatility.</li>
@@ -361,21 +361,25 @@ The two-state Markov Switching crypto market model takes the form:
 <li><b>Transition dynamics:</b> High-Vol is shorter-lived and clustered; Low-Vol dominates time-in-state.</li>
 </ul>
 </div>
-<div id="outline-container-orgd5a2d9d" class="outline-3">
-<h3 id="orgd5a2d9d"><span class="section-number-3">5.1.</span> Figure: Probability of a High Volatility Regime</h3>
+<div id="outline-container-org2dbde03" class="outline-3">
+<h3 id="org2dbde03"><span class="section-number-3">5.1.</span> Figure: Probability of a High Volatility Regime</h3>
 <div class="outline-text-3" id="text-5-1">
 
-<div id="orgcd53fdc" class="figure">
+<div id="org98ab11d" class="figure">
 <p><img src="./analysis/two_regimes_market_model.png" alt="two_regimes_market_model.png" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org9f6d034" class="outline-3">
-<h3 id="org9f6d034"><span class="section-number-3">5.2.</span> Table: Regime betas (β₁ vs β₂ with CIs) — if using factor version</h3>
+<div id="outline-container-org6bbc1e2" class="outline-3">
+<h3 id="org6bbc1e2"><span class="section-number-3">5.2.</span> Table: Regime betas (β₁ vs β₂ with CIs) — if using factor version</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
-Algorand Returns Markov-Switching Factor Loadings.  Below are results from a Markov-Switching CAPM regression with 2 regimes.  Coefficients are reported with t-statistics below in parentheses.  Data are sampled at the weekly frequency (ending Friday), and range from July 5, 2019 to November 29, 2024. MktRF is market returns minus the risk free rate, and measures the market price of risk. \(^{*}\), \(^{**}\), and \(^{***}\) denote significance at the 10%, 5%, and 1% levels respectively.
+Below are results from a Markov-Switching CAPM regression with 2 regimes.  \(^{*}\), \(^{**}\), and \(^{***}\) denote significance at the 10%, 5%, and 1% levels respectively.
+</p>
+
+<p>
+Table 1 shows coefficients from the low volatility regime.
 </p>
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -555,8 +559,8 @@ Algorand Returns Markov-Switching Factor Loadings.  Below are results from a Mar
 </div>
 </div>
 </div>
-<div id="outline-container-orgef094eb" class="outline-2">
-<h2 id="orgef094eb"><span class="section-number-2">6.</span> Interpreting the Pattern</h2>
+<div id="outline-container-org6bce988" class="outline-2">
+<h2 id="org6bce988"><span class="section-number-2">6.</span> Interpreting the Pattern</h2>
 <div class="outline-text-2" id="text-6">
 <ol class="org-ol">
 <li><b>Microstructure &amp; positioning:</b> Lower leverage/oi can dampen forced selling → relative strength on flush days.</li>
@@ -569,8 +573,8 @@ None is a silver bullet; together they plausibly yield downside resilience in Hi
 </p>
 </div>
 </div>
-<div id="outline-container-org0cbbd66" class="outline-2">
-<h2 id="org0cbbd66"><span class="section-number-2">7.</span> Bottom Line</h2>
+<div id="outline-container-org298dca9" class="outline-2">
+<h2 id="org298dca9"><span class="section-number-2">7.</span> Bottom Line</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 ALGO doesn’t lead in quiet tapes, and the model agrees. But when volatility spikes, ALGO has tended to <b>lose less or even lead</b>. For risk-aware allocators, that state-contingent resilience can compound meaningfully—provided you manage the <b>when</b> with a disciplined regime filter.
@@ -580,7 +584,7 @@ ALGO doesn’t lead in quiet tapes, and the model agrees. But when volatility sp
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Matt Brigida</p>
-<p class="date">Created: 2025-10-21 Tue 12:43</p>
+<p class="date">Created: 2025-10-21 Tue 22:50</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
