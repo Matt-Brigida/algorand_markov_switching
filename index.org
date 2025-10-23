@@ -28,7 +28,7 @@ Several posts on X highlighted ALGO’s relative resilience during the selloff. 
 [[./algo_screenshot.png]]
 
 
-[[https://www.bloomberg.com/news/articles/2025-10-11/crypto-s-record-selloff-sparks-intrigue-over-who-got-wiped-out?utm_source=chatgpt.com][Context for just how rough that week was for crypto overall (record liquidations and a broad flush).]]
+[[https://www.bloomberg.com/news/articles/2025-10-11/crypto-s-record-selloff-sparks-intrigue-over-who-got-wiped-out][Context for just how rough that week was for the crypto market (record liquidations).]]
 
 That got me wondering whether this wasn’t just a one-off anecdote, but part of a state-dependent pattern: does ALGO behave differently in high-volatility regimes vs low-volatility regimes?
 
