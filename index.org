@@ -56,7 +56,7 @@ First let's run a standard (one-regime) CAPM regression.
 
 $$r_{algo,t} - r_f = \alpha_t + \beta_{M}(M_t - r_f) + \epsilon_t$$
 
-Table 1 below shows a negative and significant alpha coefficient, and a beta coefficient of 1.39 which means algo has a bit more systematic risk than the average crypto asset. The error term's standard deviation---a measure of algo's typical return after controlling for market movements---is about 12% per week.
+Table 1 below shows a negative and significant alpha coefficient, and a beta coefficient of 1.39 which means ALGO has a bit more systematic risk than the average crypto asset. The error term's standard deviation---a measure of ALGO's typical return after controlling for market movements---is about 12% per week.
 
 #+caption: Stantard CAPM with the crypto market portfolio.
 |                         |     Coef | Std. Err |      t | P>abs(t) | [0.025 | 0.975] |
@@ -95,7 +95,7 @@ p_{00} & p_{10} \\
 
 Below are results from a Markov-Switching CAPM regression with 2 regimes.
 
-Table 2 shows coefficients from the low volatility regime. Algo's beta on the crypto market is about 1, showing systematic risk commensurate with the market.  The alpha is negative and significant which reflects algo's underperformance over the period.  In this regime, the typical weekly return after controlling for market movements is about 6.6%.
+Table 2 shows coefficients from the low volatility regime. ALGO's beta on the crypto market is about 1, showing systematic risk commensurate with the market.  The alpha is negative and significant which reflects ALGO's underperformance over the period.  In this regime, the typical weekly return after controlling for market movements is about 6.6%.
 
 #+caption: Low Volatility Regime Parameters
 |            |    coef | Std Err. |      z | P>abs(z) | [0.025 | 0.975] |
@@ -104,7 +104,7 @@ Table 2 shows coefficients from the low volatility regime. Algo's beta on the cr
 | $\beta_M$  |  1.0391 |    0.125 |  8.296 |    0.000 |  0.794 |  1.285 |
 | $\sigma^2$ | 43.6980 |    9.668 |  4.520 |    0.000 | 24.748 | 62.648 |
 
-Table 3 shows coefficients from the high volatility regime.  The alpha is now positive, but insignificant. So in the high volatility regime, algo does not underperform the market portfolio.  The beta coefficient is higher at 2.41, showing more systematic risk in the high volatility regime.  In this regime, the typical weekly return after controlling for market movements is about 21.4%.
+Table 3 shows coefficients from the high volatility regime.  The alpha is now positive, but insignificant. So in the high volatility regime, ALGO does not underperform the market portfolio.  The beta coefficient is higher at 2.41, showing more systematic risk in the high volatility regime.  In this regime, the typical weekly return after controlling for market movements is about 21.4%.
  
 #+caption: High Volatility Regime Parameters
 |            |     coef | Std, Err |     z | P>abs(z) |  [0.025 |  0.975] |
@@ -113,7 +113,7 @@ Table 3 shows coefficients from the high volatility regime.  The alpha is now po
 | $\beta_M$  |   2.4169 |    0.730 | 3.310 |    0.001 |   0.986 |   3.848 |
 | $\sigma^2$ | 460.1312 |  178.208 | 2.582 |    0.010 | 110.850 | 809.412 |
 
-The regime transition parameters are shown in Table 4 below.  When algo is in the low volatility regime in a given week, it has a 96% probability of again being the the low volatility regime in the following week.  If algo is in the high volatility regime it has about an 85% change of again being in the high volatility regime in the following week.  
+The regime transition parameters are shown in Table 4 below.  When ALGO is in the low volatility regime in a given week, it has a 96% probability of again being in the low volatility regime in the following week.  If ALGO is in the high volatility regime it has about an 85% change of again being in the high volatility regime in the following week.  
 
 #+caption: Regime transition parameters                         
 |              |   coef | std_err |      z | P>abs(z) | [0.025 | 0.975] |
@@ -141,4 +141,4 @@ None is a silver bullet; together they plausibly yield downside resilience in hi
 
 * Bottom Line
 
-Algo doesn’t lead in quiet markets, and the model results agree. But when volatility spikes, Algo has tended to *lose less or even lead*. For investors able to monitor market volatility, this state-contingent resilience can be valuable---provided you can manage the *when* with a disciplined regime filter.
+Algo doesn’t lead in quiet markets, and the model results agree. But when volatility spikes, ALGO has tended to *lose less or even lead*. For investors able to monitor market volatility, this state-contingent resilience can be valuable---provided you can manage the *when* with a disciplined regime filter.
