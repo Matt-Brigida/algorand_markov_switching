@@ -40,13 +40,13 @@ So I ran a simple two-state Markov Switching model, and the result confirmed the
 Below I’ll outline the setup and what I think it implies for portfolio construction and risk management. I’ll fill in the exact estimates (tables/figures) as I finalize the empirical work.
 
 
-* Data
+* Data and Method Overview
 - *Sample:* Weekly data from 1/2/2023 to 1/27/2025.  This excludes the recent redemption event which prompted this analysis.  I also estimated models with TVL high-minus-low and small-minus-big portfolios.  Diagnostic tests showed the CAPM specification is preferred.
 - *Assets:* 
-  - ALGO close-to-close log returns.
+  - ALGO weekly close-to-close log returns.
   - Market proxy: Total Crypto Market Cap returns.
 - *Model:* 
-  - MS on ALGO excess returns with a market factor.
+  - Markov-Switching model of ALGO excess returns with a crypto market factor (CAPM).
   - Regime-specific intercepts, betas, and volatility.
   - Additional 3-factor model includes a high-minus-low TVL, and small-minus-big crypto portfolios.
 
