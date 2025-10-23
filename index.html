@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-22 Wed 21:11 -->
+<!-- 2025-10-22 Wed 21:23 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Algorand: Value in Volatile Markets</title>
@@ -251,13 +251,13 @@ $(function() {    $('.note').before("<p class='admonition-title note'>Note</p>")
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org1162086">1. TL;DR</a></li>
-<li><a href="#orgb1652e8">2. Anecdotal Spark: “ALGO held up best”</a></li>
-<li><a href="#org1a331a9">3. Data</a></li>
-<li><a href="#org30218dd">4. Baseline: Standard One-Regime CAPM</a></li>
-<li><a href="#orgb150ca2">5. Headline Findings:  Two-Regime Markov Switching Model</a></li>
-<li><a href="#orgb310976">6. What might be the cause?</a></li>
-<li><a href="#org78b3bb2">7. Bottom Line</a></li>
+<li><a href="#org0c39942">1. TL;DR</a></li>
+<li><a href="#org69038ee">2. Anecdotal Spark: “ALGO held up best”</a></li>
+<li><a href="#orgbd6b689">3. Data</a></li>
+<li><a href="#orge1e7672">4. Baseline: Standard One-Regime CAPM</a></li>
+<li><a href="#orgda46557">5. Headline Findings:  Two-Regime Markov Switching Model</a></li>
+<li><a href="#org30d4ecb">6. What might be the cause?</a></li>
+<li><a href="#org81e1143">7. Bottom Line</a></li>
 </ul>
 </div>
 </div>
@@ -266,8 +266,8 @@ $(function() {    $('.note').before("<p class='admonition-title note'>Note</p>")
 A quick regime-switching look at ALGO’s "downside resilience".
 </p>
 </blockquote>
-<div id="outline-container-org1162086" class="outline-2">
-<h2 id="org1162086"><span class="section-number-2">1.</span> TL;DR</h2>
+<div id="outline-container-org0c39942" class="outline-2">
+<h2 id="org0c39942"><span class="section-number-2">1.</span> TL;DR</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Over the latest crypto selloff, many observers noted that <b>Algorand (ALGO) didn’t decline as much as the market</b>. 
@@ -279,8 +279,8 @@ A two-state Markov Switching (MS) model on ALGO vs. a crypto market proxy sugges
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb1652e8" class="outline-2">
-<h2 id="orgb1652e8"><span class="section-number-2">2.</span> Anecdotal Spark: “ALGO held up best”</h2>
+<div id="outline-container-org69038ee" class="outline-2">
+<h2 id="org69038ee"><span class="section-number-2">2.</span> Anecdotal Spark: “ALGO held up best”</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Several posts on X highlighted ALGO’s relative resilience during the selloff. For example:
@@ -290,7 +290,7 @@ Several posts on X highlighted ALGO’s relative resilience during the selloff. 
 </ul>
 
 
-<div id="orgc8d28e2" class="figure">
+<div id="org2fded78" class="figure">
 <p><img src="./algo_screenshot.png" alt="algo_screenshot.png" />
 </p>
 </div>
@@ -318,8 +318,8 @@ Below I’ll outline the setup and what I think it implies for portfolio constru
 </p>
 </div>
 </div>
-<div id="outline-container-org1a331a9" class="outline-2">
-<h2 id="org1a331a9"><span class="section-number-2">3.</span> Data</h2>
+<div id="outline-container-orgbd6b689" class="outline-2">
+<h2 id="orgbd6b689"><span class="section-number-2">3.</span> Data</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li><b>Sample:</b> Weekly data from 1/2/2023 to 1/27/2025.  This excludes the recent redemption event which prompted this analysis.  I also estimated models with TVL high-minus-low and small-minus-big portfolios.  Diagnostic tests showed the CAPM specification is preferred.</li>
@@ -337,8 +337,8 @@ Below I’ll outline the setup and what I think it implies for portfolio constru
 </ul>
 </div>
 </div>
-<div id="outline-container-org30218dd" class="outline-2">
-<h2 id="org30218dd"><span class="section-number-2">4.</span> Baseline: Standard One-Regime CAPM</h2>
+<div id="outline-container-orge1e7672" class="outline-2">
+<h2 id="orge1e7672"><span class="section-number-2">4.</span> Baseline: Standard One-Regime CAPM</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 First let's run a standard (one-regime) CAPM regression.
@@ -349,7 +349,7 @@ First let's run a standard (one-regime) CAPM regression.
 </p>
 
 <p>
-Table 1 below shows a negative and significant alpha coefficient, and a beta coefficient of 1.39 which means algo has a bit more systematic risk than the average crypto asset. 
+Table 1 below shows a negative and significant alpha coefficient, and a beta coefficient of 1.39 which means algo has a bit more systematic risk than the average crypto asset. The error term's standard deviation&#x2014;a measure of algo's typical return after controlling for market movements&#x2014;is about 12% per week.
 </p>
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -383,7 +383,7 @@ Table 1 below shows a negative and significant alpha coefficient, and a beta coe
 </thead>
 <tbody>
 <tr>
-<td class="org-left">const</td>
+<td class="org-left">\(\alpha\)  const</td>
 <td class="org-right">-0.4312</td>
 <td class="org-right">1.187</td>
 <td class="org-right">-0.363</td>
@@ -393,7 +393,7 @@ Table 1 below shows a negative and significant alpha coefficient, and a beta coe
 </tr>
 
 <tr>
-<td class="org-left">crypto<sub>market</sub></td>
+<td class="org-left">\(\beta_M\) crypto<sub>market</sub></td>
 <td class="org-right">1.3922</td>
 <td class="org-right">0.183</td>
 <td class="org-right">7.604</td>
@@ -401,12 +401,22 @@ Table 1 below shows a negative and significant alpha coefficient, and a beta coe
 <td class="org-right">1.029</td>
 <td class="org-right">1.755</td>
 </tr>
+
+<tr>
+<td class="org-left">\(\sigma^2\)</td>
+<td class="org-right">145.7587</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+</tr>
 </tbody>
 </table>
 </div>
 </div>
-<div id="outline-container-orgb150ca2" class="outline-2">
-<h2 id="orgb150ca2"><span class="section-number-2">5.</span> Headline Findings:  Two-Regime Markov Switching Model</h2>
+<div id="outline-container-orgda46557" class="outline-2">
+<h2 id="orgda46557"><span class="section-number-2">5.</span> Headline Findings:  Two-Regime Markov Switching Model</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 The two-state Markov Switching crypto market model takes the form:
@@ -431,25 +441,25 @@ p_{00} & p_{10} \\
 \end{bmatrix}\) 
 </p>
 </div>
-<div id="outline-container-org0e970df" class="outline-3">
-<h3 id="org0e970df"><span class="section-number-3">5.1.</span> Figure: Probability of a High Volatility Regime</h3>
+<div id="outline-container-org35add95" class="outline-3">
+<h3 id="org35add95"><span class="section-number-3">5.1.</span> Figure: Probability of a High Volatility Regime</h3>
 <div class="outline-text-3" id="text-5-1">
 
-<div id="orgf47909a" class="figure">
+<div id="org8d9aaa3" class="figure">
 <p><img src="./analysis/two_regimes_market_model.png" alt="two_regimes_market_model.png" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgc02c000" class="outline-3">
-<h3 id="orgc02c000"><span class="section-number-3">5.2.</span> Tables</h3>
+<div id="outline-container-orgf0d68f6" class="outline-3">
+<h3 id="orgf0d68f6"><span class="section-number-3">5.2.</span> Tables</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
 Below are results from a Markov-Switching CAPM regression with 2 regimes.
 </p>
 
 <p>
-Table 2 shows coefficients from the low volatility regime. Algo's beta on the crypto market is about 1, showing systematic risk commensurate with the market.  The alpha is negative and significant which reflects algo's underperformance over the period. 
+Table 2 shows coefficients from the low volatility regime. Algo's beta on the crypto market is about 1, showing systematic risk commensurate with the market.  The alpha is negative and significant which reflects algo's underperformance over the period.  In this regime, the typical weekly return after controlling for market movements is about 6.6%.
 </p>
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -515,7 +525,7 @@ Table 2 shows coefficients from the low volatility regime. Algo's beta on the cr
 </table>
 
 <p>
-Table 3 shows coefficients from the high volatility regime.  The alpha is now positive, but insignificant. So in the high volatility regime, algo does not underperform the market portfolio.  The beta coefficient is higher at 2.41, showing more systematic risk in the high volatility regime.  
+Table 3 shows coefficients from the high volatility regime.  The alpha is now positive, but insignificant. So in the high volatility regime, algo does not underperform the market portfolio.  The beta coefficient is higher at 2.41, showing more systematic risk in the high volatility regime.  In this regime, the typical weekly return after controlling for market movements is about 21.4%.
 </p>
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -651,8 +661,8 @@ In sum:
 </div>
 </div>
 </div>
-<div id="outline-container-orgb310976" class="outline-2">
-<h2 id="orgb310976"><span class="section-number-2">6.</span> What might be the cause?</h2>
+<div id="outline-container-org30d4ecb" class="outline-2">
+<h2 id="org30d4ecb"><span class="section-number-2">6.</span> What might be the cause?</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 A couple possibilities are:
@@ -669,8 +679,8 @@ None is a silver bullet; together they plausibly yield downside resilience in hi
 </p>
 </div>
 </div>
-<div id="outline-container-org78b3bb2" class="outline-2">
-<h2 id="org78b3bb2"><span class="section-number-2">7.</span> Bottom Line</h2>
+<div id="outline-container-org81e1143" class="outline-2">
+<h2 id="org81e1143"><span class="section-number-2">7.</span> Bottom Line</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 Algo doesn’t lead in quiet markets, and the model results agree. But when volatility spikes, Algo has tended to <b>lose less or even lead</b>. For investors able to monitor market volatility, this state-contingent resilience can be valuable&#x2014;provided you can manage the <b>when</b> with a disciplined regime filter.
@@ -680,7 +690,7 @@ Algo doesn’t lead in quiet markets, and the model results agree. But when vola
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Matt Brigida</p>
-<p class="date">Created: 2025-10-22 Wed 21:11</p>
+<p class="date">Created: 2025-10-22 Wed 21:23</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

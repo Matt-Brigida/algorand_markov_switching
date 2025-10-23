@@ -56,14 +56,17 @@ First let's run a standard (one-regime) CAPM regression.
 
 $$r_{algo,t} - r_f = \alpha_t + \beta_{M}(M_t - r_f) + \epsilon_t$$
 
-Table 1 below shows a negative and significant alpha coefficient, and a beta coefficient of 1.39 which means algo has a bit more systematic risk than the average crypto asset. 
+Table 1 below shows a negative and significant alpha coefficient, and a beta coefficient of 1.39 which means algo has a bit more systematic risk than the average crypto asset. The error term's standard deviation---a measure of algo's typical return after controlling for market movements---is about 12% per week.
 
 #+caption: Stantard CAPM with the crypto market portfolio.
-|               |    Coef | Std. Err |      t | P>abs(t) | [0.025 | 0.975] |
-|---------------+---------+----------+--------+----------+--------+--------|
-| const         | -0.4312 |    1.187 | -0.363 |    0.717 | -2.784 |  1.921 |
-| crypto_market |  1.3922 |    0.183 |  7.604 |    0.000 |  1.029 |  1.755 |
+|                         |     Coef | Std. Err |      t | P>abs(t) | [0.025 | 0.975] |
+|-------------------------+----------+----------+--------+----------+--------+--------|
+| $\alpha$  const         |  -0.4312 |    1.187 | -0.363 |    0.717 | -2.784 |  1.921 |
+| $\beta_M$ crypto_market |   1.3922 |    0.183 |  7.604 |    0.000 |  1.029 |  1.755 |
+| $\sigma^2$              | 145.7587 |          |        |          |        |        |
+  
 
+  
 * Headline Findings:  Two-Regime Markov Switching Model
 
 The two-state Markov Switching crypto market model takes the form:
@@ -92,7 +95,7 @@ p_{00} & p_{10} \\
 
 Below are results from a Markov-Switching CAPM regression with 2 regimes.
 
-Table 2 shows coefficients from the low volatility regime. Algo's beta on the crypto market is about 1, showing systematic risk commensurate with the market.  The alpha is negative and significant which reflects algo's underperformance over the period. 
+Table 2 shows coefficients from the low volatility regime. Algo's beta on the crypto market is about 1, showing systematic risk commensurate with the market.  The alpha is negative and significant which reflects algo's underperformance over the period.  In this regime, the typical weekly return after controlling for market movements is about 6.6%.
 
 #+caption: Low Volatility Regime Parameters
 |            |    coef | Std Err. |      z | P>abs(z) | [0.025 | 0.975] |
@@ -101,7 +104,7 @@ Table 2 shows coefficients from the low volatility regime. Algo's beta on the cr
 | $\beta_M$  |  1.0391 |    0.125 |  8.296 |    0.000 |  0.794 |  1.285 |
 | $\sigma^2$ | 43.6980 |    9.668 |  4.520 |    0.000 | 24.748 | 62.648 |
 
-Table 3 shows coefficients from the high volatility regime.  The alpha is now positive, but insignificant. So in the high volatility regime, algo does not underperform the market portfolio.  The beta coefficient is higher at 2.41, showing more systematic risk in the high volatility regime.  
+Table 3 shows coefficients from the high volatility regime.  The alpha is now positive, but insignificant. So in the high volatility regime, algo does not underperform the market portfolio.  The beta coefficient is higher at 2.41, showing more systematic risk in the high volatility regime.  In this regime, the typical weekly return after controlling for market movements is about 21.4%.
  
 #+caption: High Volatility Regime Parameters
 |            |     coef | Std, Err |     z | P>abs(z) |  [0.025 |  0.975] |

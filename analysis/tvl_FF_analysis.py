@@ -259,3 +259,6 @@ print(res.summary())
 # Skew:                           3.278   Prob(JB):                         0.00
 # Kurtosis:                      25.302   Cond. No.                         6.66
 # ==============================================================================
+
+# Get the estimated variance of the error term
+res.scale
