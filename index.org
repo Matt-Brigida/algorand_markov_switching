@@ -133,7 +133,7 @@ In sum:
 
 A couple possibilities are:
 
-1) *Microstructure & positioning:* Lower leverage can dampen forced selling → relative strength on flush days.  
+1) *Microstructure & positioning:* Lower leverage can dampen forced selling → relative strength on downside days.  
 2) *Holder base & narrative:* A builder/payment/governance-tilted cohort may sell less aggressively in panics.  
 3) *Fee/throughput stability:* Predictable L1 costs and throughput avoids fee shocks during congestion.
 
