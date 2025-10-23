@@ -224,3 +224,38 @@ plt.savefig("two_regimes_market_model.png")
 # p[0->0]        0.9626      0.026     36.529      0.000       0.911       1.014
 # p[1->0]        0.1570      0.123      1.277      0.202      -0.084       0.398
 # ==============================================================================
+
+
+## one regime CAPM
+
+exog = final_data[['crypto_market']]
+
+# Fit and summarize OLS model
+mod = sm.OLS(final_data['close'], sm.add_constant(exog))
+
+res = mod.fit()
+
+print(res.summary())
+
+#                             OLS Regression Results                            
+# ==============================================================================
+# Dep. Variable:                  close   R-squared:                       0.351
+# Model:                            OLS   Adj. R-squared:                  0.345
+# Method:                 Least Squares   F-statistic:                     57.83
+# Date:                Wed, 22 Oct 2025   Prob (F-statistic):           1.17e-11
+# Time:                        20:59:23   Log-Likelihood:                -425.17
+# No. Observations:                 109   AIC:                             854.3
+# Df Residuals:                     107   BIC:                             859.7
+# Df Model:                           1                                         
+# Covariance Type:            nonrobust                                         
+# =================================================================================
+#                     coef    std err          t      P>|t|      [0.025      0.975]
+# ---------------------------------------------------------------------------------
+# const            -0.4312      1.187     -0.363      0.717      -2.784       1.921
+# crypto_market     1.3922      0.183      7.604      0.000       1.029       1.755
+# ==============================================================================
+# Omnibus:                      112.999   Durbin-Watson:                   2.256
+# Prob(Omnibus):                  0.000   Jarque-Bera (JB):             2454.038
+# Skew:                           3.278   Prob(JB):                         0.00
+# Kurtosis:                      25.302   Cond. No.                         6.66
+# ==============================================================================

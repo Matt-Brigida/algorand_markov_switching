@@ -1,34 +1,38 @@
-#+title: Does Algorand Outperform in High-Volatility Periods?
-#+SETUPFILE: ~/.emacs.d/org-themes/src/retro_dark/retro_dark.theme
-#+subtitle: A quick regime-switching look at ALGO’s “downside resilience.”
+#+title: Algorand: Value in Volatile Markets
+# #+SETUPFILE: ~/.emacs.d/org-themes/src/retro_dark/retro_dark.theme
+#+SETUPFILE: ~/.emacs.d/org-themes/src/readtheorg_inline/readtheorg_inline.theme
+# #+subtitle: A quick regime-switching look at ALGO’s “downside resilience.”
 #+author: Matt Brigida
 #+date: 
-#+options: toc:nil num:t
+#+options: toc:1 num:t
 #+startup: content
 
 #+begin_comment
 #+title: When Markets Get Messy, Algorand Gets Interesting
 #+end_comment
 
+#+begin_quote
+A quick regime-switching look at ALGO’s "downside resilience".
+#+end_quote
+
 * TL;DR
 Over the latest crypto selloff, many observers noted that *Algorand (ALGO) didn’t decline as much as the market*. 
 A two-state Markov Switching (MS) model on ALGO vs. a crypto market proxy suggests:
-- In the *High-Vol* state, ALGO tends to **outperform** (or lose less).  Positive alpha.
-- In the *Low-Vol* state, ALGO tends to **underperform**.
-
-I include placeholders below for your charts/tables.
+- In the *High-Vol* state, ALGO tends to **outperform** the market.
+- However, in the *Low-Vol* state, ALGO tends to **underperform** the market.
 
 * Anecdotal Spark: “ALGO held up best”
-Several posts on X highlighted ALGO’s relative resilience during the selloff.
-- [[https://x.com/algerstmehn/status/1977063165214228947?utm_source=chatgpt.com][“ALGO held up well during the flush.”]]
-- “One of the best-holding L1s today.”
-- “Relative strength vs. majors.”
+Several posts on X highlighted ALGO’s relative resilience during the selloff. For example:
+- [[https://x.com/algerstmehn/status/1977063165214228947][“ALGO held up well during the flush.”]]
+
+[[./algo_screenshot.png]]
+
 
 [[https://www.bloomberg.com/news/articles/2025-10-11/crypto-s-record-selloff-sparks-intrigue-over-who-got-wiped-out?utm_source=chatgpt.com][Context for just how rough that week was for crypto overall (record liquidations and a broad flush).]]
 
 That got me wondering whether this wasn’t just a one-off anecdote, but part of a state-dependent pattern: does ALGO behave differently in high-volatility regimes vs low-volatility regimes?
 
-So I ran a simple two-state Markov Switching (MS) model, and the result confirmed the community's intuition:
+So I ran a simple two-state Markov Switching model, and the result confirmed the community's intuition:
 
 - In the high-vol state, ALGO outperforms the broad crypto market.
 - In the low-vol state, ALGO underperforms.
@@ -36,15 +40,31 @@ So I ran a simple two-state Markov Switching (MS) model, and the result confirme
 Below I’ll outline the setup and what I think it implies for portfolio construction and risk management. I’ll fill in the exact estimates (tables/figures) as I finalize the empirical work.
 
 
-* Why a Markov Switching model?
+* Data
+- *Sample:* Weekly data from 1/2/2023 to 1/27/2025.  This excludes the recent redemption event which prompted this analysis.  I also estimated models with TVL high-minus-low and small-minus-big portfolios.  Diagnostic tests showed the CAPM specification is preferred.
+- *Assets:* 
+  - ALGO close-to-close log returns.
+  - Market proxy: Total Crypto Market Cap returns.
+- *Model:* 
+  - MS on ALGO excess returns with a market factor.
+  - Regime-specific intercepts, betas, and volatility.
+  - Additional 3-factor model includes a high-minus-low TVL, and small-minus-big crypto portfolios.
 
-Crypto cycles between calm and chaos; a single linear relationship can miss *state-dependent* behavior.
-- *MS(2) intuition:* Two latent regimes (Low-Vol, High-Vol), with regime-specific intercepts/betas and transition probabilities.
-- We recover *smoothed* (and *filtered*) probabilities for each date.
+* Baseline: Standard One-Regime CAPM
 
-A standard (one-state) crypto market model takes the form:
+First let's run a standard (one-regime) CAPM regression.
 
 $$r_{algo,t} - r_f = \alpha_t + \beta_{M}(M_t - r_f) + \epsilon_t$$
+
+Table 1 below shows a negative and significant alpha coefficient, and a beta coefficient of 1.39 which means algo has a bit more systematic risk than the average crypto asset. 
+
+#+caption: Stantard CAPM with the crypto market portfolio.
+|               |    Coef | Std. Err |      t | P>abs(t) | [0.025 | 0.975] |
+|---------------+---------+----------+--------+----------+--------+--------|
+| const         | -0.4312 |    1.187 | -0.363 |    0.717 | -2.784 |  1.921 |
+| crypto_market |  1.3922 |    0.183 |  7.604 |    0.000 |  1.029 |  1.755 |
+
+* Headline Findings:  Two-Regime Markov Switching Model
 
 The two-state Markov Switching crypto market model takes the form:
 
@@ -61,33 +81,18 @@ p_{00} & p_{10} \\
 1-p_{00} & 1-p_{10}
 \end{bmatrix}$ 
 
-* Data
-- *Sample:* Weekly data from 1/2/2023 to 1/27/2025.
-- *Assets:* 
-  - ALGO close-to-close log returns.
-  - Market proxy: Total Crypto Market Cap returns.
-- *Model:* 
-  - MS on ALGO excess returns with a market factor.
-  - Regime-specific intercepts, betas, and volatility.
-  - Additional 3-factor model includes a high-minus-low TVL, and small-minus-big crypto portfolios.
 
-* Headline Findings (fill in from your estimation)
-- *State identification:* High-Vol spikes line up with overall market volatility.
-- *Performance split:*
-  - *High-Vol:* α (and/or alpha) **positive and significant**; beta may decline (defensive tilt) or remain stable.
-  - *Low-Vol:* α **negative or flat**; ALGO lags the market drift.
-- *Transition dynamics:* High-Vol is shorter-lived and clustered; Low-Vol dominates time-in-state.
 
 ** Figure: Probability of a High Volatility Regime
 #+caption:
 [[./analysis/two_regimes_market_model.png]]
 
 
-** Table: Regime betas (β₁ vs β₂ with CIs) — if using factor version
+** Tables
 
-Below are results from a Markov-Switching CAPM regression with 2 regimes.  $^{*}$, $^{**}$, and $^{***}$ denote significance at the 10%, 5%, and 1% levels respectively.
+Below are results from a Markov-Switching CAPM regression with 2 regimes.
 
-Table 1 shows coefficients from the low volatility regime.
+Table 2 shows coefficients from the low volatility regime. Algo's beta on the crypto market is about 1, showing systematic risk commensurate with the market.  The alpha is negative and significant which reflects algo's underperformance over the period. 
 
 #+caption: Low Volatility Regime Parameters
 |            |    coef | Std Err. |      z | P>abs(z) | [0.025 | 0.975] |
@@ -95,13 +100,17 @@ Table 1 shows coefficients from the low volatility regime.
 | $\alpha$   | -1.6282 |    0.740 | -2.201 |    0.028 | -3.078 | -0.179 |
 | $\beta_M$  |  1.0391 |    0.125 |  8.296 |    0.000 |  0.794 |  1.285 |
 | $\sigma^2$ | 43.6980 |    9.668 |  4.520 |    0.000 | 24.748 | 62.648 |
+
+Table 3 shows coefficients from the high volatility regime.  The alpha is now positive, but insignificant. So in the high volatility regime, algo does not underperform the market portfolio.  The beta coefficient is higher at 2.41, showing more systematic risk in the high volatility regime.  
  
 #+caption: High Volatility Regime Parameters
-|            |     coef | std_err |     z | P>abs(z) |  [0.025 |  0.975] |
-|------------+----------+---------+-------+----------+---------+---------|
-| $\alpha$   |   3.9621 |   5.637 | 0.703 |    0.482 |  -7.087 |  15.011 |
-| $\beta_M$  |   2.4169 |   0.730 | 3.310 |    0.001 |   0.986 |   3.848 |
-| $\sigma^2$ | 460.1312 | 178.208 | 2.582 |    0.010 | 110.850 | 809.412 |
+|            |     coef | Std, Err |     z | P>abs(z) |  [0.025 |  0.975] |
+|------------+----------+----------+-------+----------+---------+---------|
+| $\alpha$   |   3.9621 |    5.637 | 0.703 |    0.482 |  -7.087 |  15.011 |
+| $\beta_M$  |   2.4169 |    0.730 | 3.310 |    0.001 |   0.986 |   3.848 |
+| $\sigma^2$ | 460.1312 |  178.208 | 2.582 |    0.010 | 110.850 | 809.412 |
+
+The regime transition parameters are shown in Table 4 below.  When algo is in the low volatility regime in a given week, it has a 96% probability of again being the the low volatility regime in the following week.  If algo is in the high volatility regime it has about an 85% change of again being in the high volatility regime in the following week.  
 
 #+caption: Regime transition parameters                         
 |              |   coef | std_err |      z | P>abs(z) | [0.025 | 0.975] |
@@ -109,13 +118,24 @@ Table 1 shows coefficients from the low volatility regime.
 | p[High->Low] | 0.1570 |   0.123 |  1.277 |    0.202 | -0.084 |  0.398 |
 
 
+In sum:
+- *State identification:* High-Vol spikes line up with overall market volatility.
+- *Performance split:*
+  - *Low-Vol:* $\alpha$ is **negative and significant**.
+  - *High-Vol:* $\alpha$ is **positive but insignificant**.
+- *Transition dynamics:* High-Vol is shorter-lived and clustered; Low-Vol dominates time-in-state.
 
-* Interpreting the Pattern
-1) *Microstructure & positioning:* Lower leverage/oi can dampen forced selling → relative strength on flush days.  
+
+* What might be the cause?
+
+A couple possibilities are:
+
+1) *Microstructure & positioning:* Lower leverage can dampen forced selling → relative strength on flush days.  
 2) *Holder base & narrative:* A builder/payment/governance-tilted cohort may sell less aggressively in panics.  
-3) *Fee/throughput stability:* Predictable L1 costs/throughput avoid fee shocks during congestion.
+3) *Fee/throughput stability:* Predictable L1 costs and throughput avoids fee shocks during congestion.
 
-None is a silver bullet; together they plausibly yield downside resilience in High-Vol regimes.
+None is a silver bullet; together they plausibly yield downside resilience in high-volatility regimes.
 
 * Bottom Line
-ALGO doesn’t lead in quiet tapes, and the model agrees. But when volatility spikes, ALGO has tended to *lose less or even lead*. For risk-aware allocators, that state-contingent resilience can compound meaningfully—provided you manage the *when* with a disciplined regime filter.
+
+Algo doesn’t lead in quiet markets, and the model results agree. But when volatility spikes, Algo has tended to *lose less or even lead*. For investors able to monitor market volatility, this state-contingent resilience can be valuable---provided you can manage the *when* with a disciplined regime filter.
