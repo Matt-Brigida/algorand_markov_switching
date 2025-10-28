@@ -3,6 +3,9 @@ from scipy import stats
 import statsmodels.api as sm
 from statsmodels.tsa.stattools import adfuller
 import matplotlib.pyplot as plt
+import numpy as np
+import arch
+from arch import arch_model
 # import grs_test
 
 tvl = pd.read_pickle("../../data/crypto_factors/tvl/FF_96_all_tvl/tvl_to_mktcap/tvl_quartiles.pkl")
@@ -92,7 +95,8 @@ final_data['close'] = final_data['close'] - final_data['rf']
 
 
 
-final_data
+final_data.to_csv("final_data.csv")
+final_data.to_pickle("final_data.pkl")
 
 
 #### data ready for markov switching model-------------------------
@@ -260,5 +264,58 @@ print(res.summary())
 # Kurtosis:                      25.302   Cond. No.                         6.66
 # ==============================================================================
 
-# Get the estimated variance of the error term
+## Get the estimated variance of the error term
 res.scale
+
+## Get market realized vol-----
+
+np.sqrt(final_data['crypto_market']**2).plot()
+## plt.show()
+plt.savefig("market_realized_vol.png")
+plt.clf()
+
+
+### GARCH
+
+# Fit GARCH(1,1) model
+
+model = arch_model(final_data['crypto_market'], vol='Garch', p=1, o=1, q=1, power=1.0, dist="StudentsT")
+results = model.fit(disp='off')
+
+# Display results
+print(results.summary())
+
+# Extract key outputs
+conditional_volatility = results.conditional_volatility
+standardized_residuals = results.std_resid
+parameters = results.params
+
+conditional_volatility.plot()
+#plt.show()
+plt.savefig("zgarch_studentT.png")
+
+####
+model = arch_model(final_data['crypto_market'], vol='EGARCH', p=1, q=1, mean='Constant')
+results = model.fit(disp='on')
+
+# Extract conditional volatility (same as GARCH)
+conditional_vol = results.conditional_volatility
+
+conditional_vol.plot()
+plt.show()
+
+
+np.abs(final_data['crypto_market']).plot()
+plt.show()
+
+
+###  stock market vol-----
+
+model = arch_model(final_data['stock_market'], vol='GARCH', p=1, q=1, mean='Constant')
+results = model.fit(disp='on')
+
+# Extract conditional volatility (same as GARCH)
+conditional_vol = results.conditional_volatility
+
+conditional_vol.plot()
+plt.show()
