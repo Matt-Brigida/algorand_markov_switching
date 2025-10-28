@@ -90,6 +90,10 @@ p_{00} & p_{10} \\
 #+caption:
 [[./analysis/two_regimes_market_model.png]]
 
+Compare this to crypto market realized volatility:
+
+[[./analysis/market_realized_vol.png]]
+
 
 ** Tables
 
