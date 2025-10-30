@@ -112,7 +112,7 @@ Table 3 shows coefficients from the high volatility regime.  The alpha is now po
 | $\beta_M$  |   2.4169 |    0.730 | 3.310 |    0.001 |   0.986 |   3.848 |
 | $\sigma^2$ | 460.1312 |  178.208 | 2.582 |    0.010 | 110.850 | 809.412 |
 
-The regime transition parameters are shown in Table 4 below.  When ALGO is in the low volatility regime in a given week, it has a 96% probability of again being in the low volatility regime in the following week.  If ALGO is in the high volatility regime it has about an 85% change of again being in the high volatility regime in the following week.  
+The regime transition parameters are shown in Table 4 below.  When ALGO is in the low volatility regime in a given week, it has a 96% probability of again being in the low volatility regime in the following week.  If ALGO is in the high volatility regime it has about an 85% chance of again being in the high volatility regime in the following week.  
 
 #+caption: Regime transition parameters                         
 |              |   coef | std_err |      z | P>abs(z) | [0.025 | 0.975] |
