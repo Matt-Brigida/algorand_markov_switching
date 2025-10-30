@@ -97,7 +97,7 @@ Below are results from a Markov-Switching CAPM regression with 2 regimes.
 Table 2 shows coefficients from the low volatility regime. ALGO's beta on the crypto market is about 1, showing systematic risk commensurate with the market.  The alpha is negative and significant which reflects ALGO's underperformance over the period.  In this regime, the typical weekly return after controlling for market movements is about 6.6%.
 
 #+caption: Low Volatility Regime Parameters
-|            |    coef | Std Err. |      z | P>abs(z) | [0.025 | 0.975] |
+|            |   Coef. | Std Err. |      z | P>abs(z) | [0.025 | 0.975] |
 |------------+---------+----------+--------+----------+--------+--------|
 | $\alpha$   | -1.6282 |    0.740 | -2.201 |    0.028 | -3.078 | -0.179 |
 | $\beta_M$  |  1.0391 |    0.125 |  8.296 |    0.000 |  0.794 |  1.285 |
@@ -106,18 +106,18 @@ Table 2 shows coefficients from the low volatility regime. ALGO's beta on the cr
 Table 3 shows coefficients from the high volatility regime.  The alpha is now positive, but insignificant. So in the high volatility regime, ALGO does not underperform the market portfolio.  The beta coefficient is higher at 2.41, showing more systematic risk in the high volatility regime.  In this regime, the typical weekly return after controlling for market movements is about 21.4%.
  
 #+caption: High Volatility Regime Parameters
-|            |     coef | Std, Err |     z | P>abs(z) |  [0.025 |  0.975] |
-|------------+----------+----------+-------+----------+---------+---------|
-| $\alpha$   |   3.9621 |    5.637 | 0.703 |    0.482 |  -7.087 |  15.011 |
-| $\beta_M$  |   2.4169 |    0.730 | 3.310 |    0.001 |   0.986 |   3.848 |
-| $\sigma^2$ | 460.1312 |  178.208 | 2.582 |    0.010 | 110.850 | 809.412 |
+|            |    Coef. | Std. Err. |     z | P>abs(z) |  [0.025 |  0.975] |
+|------------+----------+-----------+-------+----------+---------+---------|
+| $\alpha$   |   3.9621 |     5.637 | 0.703 |    0.482 |  -7.087 |  15.011 |
+| $\beta_M$  |   2.4169 |     0.730 | 3.310 |    0.001 |   0.986 |   3.848 |
+| $\sigma^2$ | 460.1312 |   178.208 | 2.582 |    0.010 | 110.850 | 809.412 |
 
 The regime transition parameters are shown in Table 4 below.  When ALGO is in the low volatility regime in a given week, it has a 96% probability of again being in the low volatility regime in the following week.  If ALGO is in the high volatility regime it has about an 85% chance of again being in the high volatility regime in the following week.  
 
 #+caption: Regime transition parameters                         
-|              |   coef | std_err |      z | P>abs(z) | [0.025 | 0.975] |
-| p[Low->Low]  | 0.9626 |   0.026 | 36.529 |    0.000 |  0.911 |  1.014 |
-| p[High->Low] | 0.1570 |   0.123 |  1.277 |    0.202 | -0.084 |  0.398 |
+|              |  Coef. | Std. Err. |      z | P>abs(z) | [0.025 | 0.975] |
+| p[Low->Low]  | 0.9626 |     0.026 | 36.529 |    0.000 |  0.911 |  1.014 |
+| p[High->Low] | 0.1570 |     0.123 |  1.277 |    0.202 | -0.084 |  0.398 |
 
 
 In sum:
